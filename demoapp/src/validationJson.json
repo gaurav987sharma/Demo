@@ -1,0 +1,120 @@
+{
+    "jsonData":{
+      "firstName": {
+        "validation": {
+          "required": true,
+          "isAlpha": true
+        },
+        "elementConfig": {
+          "helperText": ""
+        },
+        "value": "",
+        "valid": false,
+        "touched": false
+      },
+      "lastName": {
+        "validation": {
+          "required": true,
+          "isAlpha": true
+        },
+        "value": "",
+        "elementConfig": {
+          "helperText": ""
+        },
+        "valid": false,
+        "touched": false
+      },
+      "password": {
+        "validation": {
+          "required": true,
+          "minLength": "5",
+          "maxLength": "10"
+        },
+        "value": "",
+        "elementConfig": {
+          "helperText": ""
+        },
+        "valid": false,
+        "touched": false
+      },
+      "email": {
+        "elementConfig": {
+          "helperText": ""
+        },
+        "value": "",
+        "validation": {
+          "required": true,
+          "isEmail": true
+        },
+        "valid": false,
+        "touched": false
+      }
+    },
+    "signin":{
+      "password": {
+        "validation": {
+          "required": true,
+          "minLength": "5",
+          "maxLength": "10"
+        },
+        "value": "",
+        "elementConfig": {
+          "helperText": ""
+        },
+        "valid": false,
+        "touched": false
+      },
+      "email": {
+        "elementConfig": {
+          "helperText": ""
+        },
+        "value": "",
+        "validation": {
+          "required": true,
+          "isEmail": true
+        },
+        "valid": false,
+        "touched": false
+      }
+    },
+    "userJson":{
+      "firstName": {
+        "validation": {
+          "required": true,
+          "isAlpha": true
+        },
+        "elementConfig": {
+          "helperText": ""
+        },
+        "value": "",
+        "valid": false,
+        "touched": false
+      },
+      "lastName": {
+        "validation": {
+          "required": true,
+          "isAlpha": true
+        },
+        "value": "",
+        "elementConfig": {
+          "helperText": ""
+        },
+        "valid": false,
+        "touched": false
+      },
+      "email": {
+        "elementConfig": {
+          "helperText": ""
+        },
+        "value": "",
+        "validation": {
+          "required": true,
+          "isEmail": true
+        },
+        "valid": false,
+        "touched": false
+      }
+    }
+
+}
+  

@@ -1,0 +1,81 @@
+'use strict';
+module.exports = function(app){
+
+    var controller = require('../controller/appController');
+    var authentication = require('../auth/authentication');
+    const validator = require('../validator/validate');
+    const { validationResult } = require('express-validator');
+    /***************Disposition***************/
+        app.route('/Disposition')
+        .get(authentication.auth,controller.getAllDisposition);
+        app.get('/Disposition/:id',authentication.auth,controller.getDisposition);
+    
+    /***************END***************/
+
+    /***************SubDisposition***************/
+        app.route('/SubDisposition')
+        .get(authentication.auth,controller.getAllSubDisposition);
+        app.get('/SubDisposition/:id',authentication.auth,controller.getSubDisposition);
+        
+    /***************END***************/
+
+    /***************TicketStatus***************/
+        app.route('/TicketStatus')
+        .get(authentication.auth,controller.getAllTicketStatus);
+        app.get('/TicketStatus/:id',authentication.auth,controller.getTicketStatus);
+        
+    /***************END***************/
+
+    /***************LeadSource***************/
+        app.route('/LeadSource')
+        .get(authentication.auth,controller.getAllLeadSource);
+        app.get('/LeadSource/:id',authentication.auth,controller.getLeadSource);
+        
+    /***************END***************/
+
+
+    /***************PersonInfo***************/
+        app.route('/PersonInfo')
+        .get(authentication.auth,controller.getAllPersonInfo)
+        .post(authentication.auth, validator.validate('createPerson'), controller.addPersonInfo);
+        app.put('/PersonInfo/:id',authentication.auth,validator.validate('updatePerson'),controller.editPersonInfo);
+        app.get('/PersonInfo/:id',authentication.auth,validator.validate('getPerson'),controller.getPersonInfo);
+        
+    /***************END***************/
+
+    /***************UserInfo***************/
+        app.route('/UserInfo')
+        .get(authentication.auth, controller.getAllUserInfo)
+        .post(authentication.auth,validator.validate('createUser'), controller.addUserInfo);
+        app.put('/UserInfo/:id',authentication.auth, validator.validate('updateUser'), controller.editUserInfo);
+        app.get('/UserInfo/:id',authentication.auth, validator.validate('getUser'),controller.getUserInfo);
+    
+    /***************END***************/
+
+
+    /***************TicketDetails***************/
+        app.route('/TicketDetails')
+        .get(authentication.auth,controller.getAllTicketDetails)
+        .post(authentication.auth,validator.validate('createTicket'),controller.addTicketDetails);
+        app.put('/TicketDetails/:id',authentication.auth,validator.validate('updateTicket'),controller.editTicketDetails);
+        app.get('/TicketDetails/:id',authentication.auth,validator.validate('getTicket'),controller.getTicketDetails);
+        
+    /***************END***************/
+
+    /***************TicketHistory***************/
+        app.get('/TicketHistory/:id',authentication.auth,validator.validate('getTicket'),controller.getTicketHistory);
+    
+    /***************END***************/
+
+    /***************MailHistory***************/
+        app.get('/MailHistory/:id',authentication.auth,validator.validate('getTicket'),controller.getMailHistory);
+    
+    /***************END***************/
+
+    /***************TicketField***************/
+        app.get('/TicketFields',authentication.auth,controller.getTicketField);
+    
+    /***************END***************/
+    
+};
+

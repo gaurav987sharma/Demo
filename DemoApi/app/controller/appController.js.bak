@@ -1,0 +1,315 @@
+'use strict';
+var disposition=require('../model/disposition.js');
+var subdisposition=require('../model/subdisposition.js');
+var ticketstatus=require('../model/ticketstatus.js');
+var leadsource=require('../model/leadsource.js');
+var personinfo=require('../model/personinfo.js');
+var userinfo=require('../model/userinfo.js');
+var ticketdetails=require('../model/ticketdetails.js');
+var ticketfields=require('../model/ticketfields.js');
+const validator = require('../validator/validate');
+const { validationResult } = require('express-validator');
+
+/***************Disposition***************/
+
+    exports.getAllDisposition = function(req, res) {
+        disposition.getAllDisposition(function(err, result) {    
+        if (err)
+            res.status(404).send(err);
+        else
+            res.json({data:{message: 'Disposition fetched successfully.',result: result}});
+        });
+    };
+
+    exports.getDisposition = function(req, res){
+        disposition.getDisposition(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'Disposition fetched successfully.',result: result}});
+        });
+    }
+
+/***************END***************/
+
+
+/***************SubDisposition***************/
+
+    exports.getAllSubDisposition = function(req, res) {
+        subdisposition.getAllSubDisposition(function(err, result) {    
+        if (err)
+            res.status(404).send(err);
+        else
+            res.json({data:{message: 'Sub-disposition fetched successfully.',result: result}});
+        });
+    };
+
+    exports.getSubDisposition = function(req, res){
+        subdisposition.getSubDisposition(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'Sub-disposition fetched successfully.',result: result}});
+        });
+    }
+
+/***************END***************/
+
+/***************TicketStatus***************/
+
+    exports.getAllTicketStatus = function(req, res) {
+        ticketstatus.getAllTicketStatus(function(err, result) {    
+        if (err)
+            res.status(404).send(err);
+        else
+            res.json({data:{message: 'TicketStatus fetched successfully.',result: result}});
+        });
+    };
+
+    exports.getTicketStatus = function(req, res){
+        ticketstatus.getTicketStatus(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'TicketStatus fetched successfully.',result: result}});
+        });
+    }
+
+/***************END***************/
+
+/***************LeadSource***************/
+
+    exports.getAllLeadSource = function(req, res) {
+        leadsource.getAllLeadSource(function(err, result) {    
+        if (err)
+            res.status(404).send(err);
+        else
+            res.json({data:{message: 'LeadSource fetched successfully.',result: result}});
+        });
+    };
+
+    exports.getLeadSource = function(req, res){
+        leadsource.getTicketStatus(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'LeadSource fetched successfully.',result: result}});
+        });
+    }
+
+/***************END***************/
+
+
+/***************PersonInfo***************/
+
+    exports.getAllPersonInfo = function(req, res) {
+        
+        personinfo.getAllPersonInfo(req,function(err, result) {    
+        if (err)
+            res.status(404).send(err);
+        else
+            res.json({data:{message: 'PersonInfo fetched successfully.',result: result}});
+        });
+    };
+
+    exports.addPersonInfo = function(req, res) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        personinfo.addPersonInfo(req, function(err, result) {
+            if (err){
+                res.status(404).send(err);
+            }
+            else{
+                res.json(result);
+                res.end();
+            }
+        });
+    };
+
+    exports.editPersonInfo = function(req, res) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        personinfo.editPersonInfo(req, function(err, result) {
+            if (err){
+                res.status(404).send(err);
+            }
+            else{
+                res.json(result);
+                res.end();
+            }
+        });
+    };
+
+
+    exports.getPersonInfo = function(req, res){
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        personinfo.getPersonInfo(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'PersonInfo fetched successfully.',result: result}});
+        });
+    }
+
+/***************END***************/
+
+/***************UserInfo***************/
+
+    exports.getAllUserInfo = function(req, res) {
+        userinfo.getAllUserInfo(req, function(err, result) {    
+        if (err)
+            res.status(404).send(err);
+        else
+            res.json({data:{message: 'UserInfo fetched successfully.',result: result}});
+        });
+    };
+
+    exports.addUserInfo = function(req, res) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        userinfo.addUserInfo(req, function(err, result) {
+            if (err){
+                res.status(404).send(err);
+            }
+            else{
+                res.json(result);
+                res.end();
+            }
+        });
+    };
+
+    exports.editUserInfo = function(req, res) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        userinfo.editUserInfo(req, function(err, result) {
+            if (err){
+                res.status(404).send(err);
+            }
+            else{
+                res.json(result);
+                res.end();
+            }
+        });
+    };
+
+
+    exports.getUserInfo = function(req, res){
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        userinfo.getUserInfo(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'UserInfo fetched successfully.',result: result}});
+        });
+    }
+
+/***************END***************/
+
+/***************TicketDetails***************/
+
+    exports.getAllTicketDetails = function(req, res) {
+        ticketdetails.getAllTicketDetails(function(err, result) {    
+        if (err)
+            res.status(404).send(err);
+        else
+            res.json({data:{message: 'Ticket fetched successfully.',result: result}});
+        });
+    };
+
+    exports.addTicketDetails = function(req, res) {
+        const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+            }
+        ticketdetails.addTicketDetails(req, function(err, result) {
+            if (err){
+                res.status(404).send(err);
+            }
+            else{
+                res.json(result);
+                res.end();
+            }
+        });
+    };
+
+    exports.editTicketDetails = function(req, res) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        ticketdetails.editTicketDetails(req, function(err, result) {
+            if (err){
+                res.status(404).send(err);
+            }
+            else{
+                res.json(result);
+                res.end();
+            }
+        });
+    };
+
+
+    exports.getTicketDetails = function(req, res){
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        ticketdetails.getTicketDetails(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'TicketDetails fetched successfully.',result: result}});
+        });
+    }
+
+    exports.getTicketHistory = function(req, res){
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        ticketdetails.getTicketHistory(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'TicketHistory fetched successfully.',result: result}});
+        });
+    }
+
+    exports.getMailHistory = function(req, res){
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.send({ response_code: 400, message: errors.array().slice(0, 1).map(function (errs) { return errs.msg; }).toString() });
+        }
+        ticketdetails.getMailHistory(req.params.id,function(err, result){
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'MailHistory fetched successfully.',result: result}});
+        });
+    }
+
+    exports.getTicketField = function(req, res){
+        ticketdetails.getTicketField(function(err, result){
+			console.log("====here in controller--------");
+            if(err)
+                res.status(404).send(err);
+            else
+                res.json({data:{message: 'TicketField fetched successfully.',result: result}});
+        });
+    }
+
+/***************END***************/
